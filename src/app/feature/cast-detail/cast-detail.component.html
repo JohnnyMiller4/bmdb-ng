@@ -1,0 +1,46 @@
+<div class="component">
+    <section class="heading">
+        <span class="page-title font-weight-bold font-italic">{{title}}</span>
+        <span> | <a routerLink="/cast/list">Return to list...</a></span>
+    </section>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>Id:</td>
+                <td>{{cast.id}}</td>
+            </tr>
+            <tr>
+                <td>
+                    Movie:
+                </td>
+                <td>
+                    <select [(ngModel)]="cast.movie" class="rounded" [compareWith]="compMovie" disabled>
+                        <option *ngFor='let m of movies' [ngValue]='m'>{{m.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Actor:
+                </td>
+                <td>
+                    <select [(ngModel)]="cast.actor" class="rounded" [compareWith]="compActor" disabled>
+                        <option *ngFor='let a of actors' [ngValue]='a'>{{a.lastName + ", " + a.firstName}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Role:
+                </td>
+                <td>
+                    <input [(ngModel)]="cast.role" class="rounded" type="text" disabled>
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span>
+        <span><a routerLink="/cast/edit/{{cast.id}}" class="btn btn-sm btn-warning">Edit</a></span>
+        <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+    </span>
+</div>

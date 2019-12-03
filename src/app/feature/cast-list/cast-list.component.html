@@ -1,0 +1,31 @@
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+        <span><a routerLink='/cast/create'>
+                <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+        </span>
+    </div>
+</div>
+<p *ngIf='!casts'>Loading...</p>
+<table *ngIf='casts' class="table">
+    <tr>
+        <th><a (click)="sortBy('id')">ID</a></th>
+        <th><a (click)="sortBy('movie.name')">Movie</a></th>
+        <th><a (click)="sortBy('actor.lastName')">Actor</a></th>
+        <th>Role</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let c of casts | sort:sortCriteria:sortOrder">
+        <td>{{c.id}}</td>
+        <td>{{c.movie.name}}</td>
+        <td>{{c.actor.lastName + ", " + c.actor.firstName}}</td>
+        <td>{{c.role}}</td>
+        <td><a routerLink='/cast/detail/{{c.id}}'><img src='assets/details.png' width='20' height='20'
+                    title='Detail'></a>
+            |
+            <a routerLink='/cast/edit/{{c.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+                    title='Edit'></a>
+        </td>
+    </tr>
+
+</table>
